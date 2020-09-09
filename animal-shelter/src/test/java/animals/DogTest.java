@@ -7,24 +7,33 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DogTest {
-    private final Dog dog = new Dog("Sgt. Woof", Gender.MALE);
+    private final Dog dogOne = new Dog("Sgt. Woof", Gender.MALE);
+    private final Dog dogTwo = new Dog("Sgt. Woof", Gender.MALE);
 
     @Test
     public void TestConstructor() {
-        assertEquals("Sgt. Woof", this.dog.getName());
-        assertEquals(Gender.MALE, this.dog.getGender());
-        assertNull(this.dog.getReservedBy());
+        assertEquals("Sgt. Woof", this.dogOne.getName());
+        assertEquals(Gender.MALE, this.dogOne.getGender());
+        assertNull(this.dogOne.getReservedBy());
         Date today = new Date();
-        assertEquals(today, this.dog.getLastWalk());
-        assertFalse(this.dog.needsWalk());
+        assertEquals(today, this.dogOne.getLastWalk());
+        assertFalse(this.dogOne.needsWalk());
     }
 
     @Test
     public void TestReservation() {
-        assertNull(this.dog.getReservedBy());
-        assertTrue(this.dog.Reserve("John Doe"));
-        assertNotNull(this.dog.getReservedBy());
-        assertEquals("John Doe", this.dog.getReservedBy().getName());
-        assertFalse(this.dog.Reserve("Jane Doe"));
+        assertNull(this.dogOne.getReservedBy());
+        assertTrue(this.dogOne.Reserve("John Doe"));
+        assertNotNull(this.dogOne.getReservedBy());
+        assertEquals("John Doe", this.dogOne.getReservedBy().getName());
+        assertFalse(this.dogOne.Reserve("Jane Doe"));
+    }
+
+    @Test
+    public void TestGetPrice() {
+        assertEquals(500, this.dogOne.getPrice());
+        assertEquals(450, this.dogTwo.getPrice());
+        dogTwo.setNumber(20);
+        assertEquals(50, this.dogTwo.getPrice());
     }
 }

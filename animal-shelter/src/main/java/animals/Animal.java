@@ -26,21 +26,6 @@ public abstract class Animal implements Sellable {
         return name;
     }
 
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public double getPrice() {
-        return 0;
-    }
-
-    @Override
-    public void setPrice(double price) {
-
-    }
-
     public Gender getGender() {
         return gender;
     }

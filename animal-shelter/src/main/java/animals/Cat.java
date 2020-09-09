@@ -12,4 +12,16 @@ public class Cat extends Animal {
     public String getBadHabits() {
         return badHabits;
     }
+
+    @Override
+    public double getPrice() {
+        double initialPrice = 350;
+        double minPrice = 35;
+
+        for (int character = 0; character < this.badHabits.length(); character++) {
+            initialPrice -= 20;
+        }
+
+        return Math.max(initialPrice, minPrice);
+    }
 }

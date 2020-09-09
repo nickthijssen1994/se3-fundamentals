@@ -23,4 +23,9 @@ class CatTest {
         assertEquals("John Doe", this.cat.getReservedBy().getName());
         assertFalse(this.cat.Reserve("Jane Doe"));
     }
+
+    @Test
+    public void TestGetPrice() {
+        assertEquals(50, this.cat.getPrice());
+    }
 }
