@@ -17,6 +17,7 @@
         <module>observer-pattern</module>
         <module>persistence</module>
         <module>koch-fractal-fxml</module>
+        <module>animal-shelter</module>
     </modules>
     <packaging>pom</packaging>
     <name>SE3 Fundamentals</name>
