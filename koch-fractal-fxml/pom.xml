@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>synchronization</artifactId>
-    <name>Synchronization</name>
+    <artifactId>koch-fractal-fxml</artifactId>
+    <name>Koch Fractal FXML</name>
 
     <dependencies>
         <dependency>

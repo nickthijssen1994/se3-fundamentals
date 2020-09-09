@@ -16,6 +16,7 @@
         <module>memory-and-data</module>
         <module>observer-pattern</module>
         <module>persistence</module>
+        <module>koch-fractal-fxml</module>
     </modules>
     <packaging>pom</packaging>
     <name>SE3 Fundamentals</name>
