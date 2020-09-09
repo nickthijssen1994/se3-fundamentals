@@ -2,7 +2,7 @@ package animals;
 
 import java.util.Date;
 
-public class Animal {
+public abstract class Animal implements Sellable {
 
     private String name;
     private Gender gender;
@@ -13,9 +13,9 @@ public class Animal {
         this.gender = gender;
     }
 
-    public boolean Reserve(String reservedBy){
+    public boolean Reserve(String reservedBy) {
 
-        if(this.reservedBy == null){
+        if (this.reservedBy == null) {
             this.reservedBy = new Reservor(reservedBy, new Date());
             return true;
         }
@@ -24,6 +24,21 @@ public class Animal {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public double getPrice() {
+        return 0;
+    }
+
+    @Override
+    public void setPrice(double price) {
+
     }
 
     public Gender getGender() {

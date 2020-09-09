@@ -8,7 +8,7 @@ class CatTest {
     private final Cat cat = new Cat("Ms. Meow", Gender.FEMALE, "Scratches Couch");
 
     @Test
-    public void TestConstructor(){
+    public void TestConstructor() {
         assertEquals("Ms. Meow", this.cat.getName());
         assertEquals(Gender.FEMALE, this.cat.getGender());
         assertEquals("Scratches Couch", this.cat.getBadHabits());
@@ -16,7 +16,7 @@ class CatTest {
     }
 
     @Test
-    public void TestReservation(){
+    public void TestReservation() {
         assertNull(this.cat.getReservedBy());
         assertTrue(this.cat.Reserve("John Doe"));
         assertNotNull(this.cat.getReservedBy());

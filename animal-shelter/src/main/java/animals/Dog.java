@@ -2,7 +2,7 @@ package animals;
 
 import java.util.Date;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
 
     private Date lastWalk;
 
@@ -11,7 +11,7 @@ public class Dog extends Animal{
         this.lastWalk = new Date();
     }
 
-    public boolean needsWalk(){
+    public boolean needsWalk() {
         Date today = new Date();
         return (today.getTime() - lastWalk.getTime()) > 86400000;
     }

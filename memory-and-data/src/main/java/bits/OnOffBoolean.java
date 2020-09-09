@@ -10,7 +10,7 @@ public class OnOffBoolean {
         withoutVariables();
     }
 
-    private static void isNot(){
+    private static void isNot() {
         System.out.println("Using bool = !bool");
         boolean bool = false;
         for (int i = 0; i <= iterations; i += 2) {
@@ -20,7 +20,7 @@ public class OnOffBoolean {
         System.out.println();
     }
 
-    private static void exclusiveOr(){
+    private static void exclusiveOr() {
         System.out.println("Using bool ^= true");
         boolean bool = false;
         for (int i = 0; i <= iterations; i += 2) {
@@ -30,7 +30,7 @@ public class OnOffBoolean {
         System.out.println();
     }
 
-    private static void withoutVariables(){
+    private static void withoutVariables() {
         System.out.println("Using (i % 4 == 2)");
         for (int i = 0; i <= iterations; i += 2) {
             System.out.println("Value of i: " + i + ", value of bool: " + (i % 4 == 2));

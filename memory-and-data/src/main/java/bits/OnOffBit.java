@@ -10,7 +10,7 @@ public class OnOffBit {
         withoutVariables();
     }
 
-    private static void exclusiveOr(){
+    private static void exclusiveOr() {
 
         System.out.println("Using bit ^= 1");
 
@@ -24,7 +24,7 @@ public class OnOffBit {
         System.out.println();
     }
 
-    private static void subtraction(){
+    private static void subtraction() {
 
         System.out.println("Using bit = 1 - bit");
 
@@ -38,7 +38,7 @@ public class OnOffBit {
         System.out.println();
     }
 
-    private static void withoutVariables(){
+    private static void withoutVariables() {
 
         System.out.println("Using ((i >> 1) & 1)");
 

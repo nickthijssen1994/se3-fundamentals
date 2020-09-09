@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReservorTest {
 
     @Test
-    public void TestConstructor(){
+    public void TestConstructor() {
         Date reservedAt = new Date();
         Reservor reservor = new Reservor("John Doe", reservedAt);
         assertEquals("John Doe", reservor.getName());
