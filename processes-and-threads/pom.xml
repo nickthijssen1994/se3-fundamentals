@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>koch-fractal-original</artifactId>
-    <name>Koch Fractal Original</name>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${openfxVersion}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>processes-and-threads</artifactId>
+    <name>Processes And Threads</name>
 
 </project>

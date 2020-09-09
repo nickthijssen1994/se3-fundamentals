@@ -9,8 +9,16 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>koch-fractal-original</module>
+        <module>gui-aspects</module>
+        <module>processes-and-threads</module>
+        <module>security</module>
+        <module>synchronization</module>
+        <module>memory-and-data</module>
+        <module>observer-pattern</module>
+        <module>persistence</module>
     </modules>
     <packaging>pom</packaging>
+    <name>SE3 Fundamentals</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,5 +29,29 @@
         <maven.compiler.release>11</maven.compiler.release>
         <openfxVersion>11.0.2</openfxVersion>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.5.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${mavenVersion}</version>
+                <configuration>
+                    <release>${codeVersion}</release>
+                    <source>${codeVersion}</source>
+                    <target>${codeVersion}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
