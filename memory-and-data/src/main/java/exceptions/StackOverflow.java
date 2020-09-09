@@ -5,7 +5,7 @@ public class StackOverflow {
         recursiveFunction(1);
     }
 
-    private static int recursiveFunction(int i){
+    private static int recursiveFunction(int i) {
         i++;
         return recursiveFunction(i);
     }

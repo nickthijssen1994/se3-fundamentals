@@ -10,18 +10,17 @@ import timeutil.TimeStamp;
 import java.util.ArrayList;
 
 /**
- *
  * @author Nico Kuijpers
  * Modified for FUN3 by Gertjan Schouten
  */
 public class KochManager {
-    
+
     private KochFractal koch;
     private ArrayList<Edge> edges;
     private FUN3KochFractalFX application;
     private TimeStamp tsCalc;
     private TimeStamp tsDraw;
-    
+
     public KochManager(FUN3KochFractalFX application) {
         this.edges = new ArrayList<Edge>();
         this.koch = new KochFractal(this);
@@ -29,7 +28,7 @@ public class KochManager {
         this.tsCalc = new TimeStamp();
         this.tsDraw = new TimeStamp();
     }
-    
+
     public void changeLevel(int nxt) {
         edges.clear();
         koch.setLevel(nxt);
@@ -43,7 +42,7 @@ public class KochManager {
         application.setTextCalc(tsCalc.toString());
         drawEdges();
     }
-    
+
     public void drawEdges() {
         tsDraw.init();
         tsDraw.setBegin("Begin drawing");
@@ -54,7 +53,7 @@ public class KochManager {
         tsDraw.setEnd("End drawing");
         application.setTextDraw(tsDraw.toString());
     }
-    
+
     public void addEdge(Edge e) {
         edges.add(e);
     }

@@ -7,7 +7,6 @@ package calculate;
 import javafx.scene.paint.Color;
 
 /**
- *
  * @author Peter Boots
  * Modified for FUN3 by Gertjan Schouten
  */
@@ -27,7 +26,7 @@ public class KochFractal {
         if (!cancelled) {
             if (n == 1) {
                 hue = hue + 1.0f / nrOfEdges;
-                Edge e = new Edge(ax, ay, bx, by, Color.hsb(hue*360.0, 1.0, 1.0));
+                Edge e = new Edge(ax, ay, bx, by, Color.hsb(hue * 360.0, 1.0, 1.0));
                 manager.addEdge(e);
             } else {
                 double angle = Math.PI / 3.0 + Math.atan2(by - ay, bx - ax);
@@ -61,18 +60,18 @@ public class KochFractal {
         cancelled = false;
         drawKochEdge((1 + Math.sqrt(3.0) / 2.0) / 2, 0.75, 0.5, 0.0, level);
     }
-    
+
     public void cancel() {
         cancelled = true;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public void setLevel(int lvl) {
         level = lvl;
         nrOfEdges = (int) (3 * Math.pow(4, level - 1));
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     public int getNrOfEdges() {

@@ -2,7 +2,7 @@ package calculate;
 
 public interface Observable {
 
-	void addObserver(Observer observer);
+    void addObserver(Observer observer);
 
-	void notifyObservers();
+    void notifyObservers();
 }

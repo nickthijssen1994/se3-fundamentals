@@ -6,28 +6,27 @@ import java.util.List;
 /**
  * Deze klasse maakt het mogelijk om opeenvolgende tijdsperiodes een naam te
  * geven, deze op te slaan en deze daarna te printen (via toString).
- *
+ * <p>
  * Tijdsperiodes worden bepaald door een begintijd en een eindtijd.
- *
+ * <p>
  * begintijd van een periode kan gezet worden door setBegin, de eindtijd kan
  * gezet worden door de methode setEind.
- *
+ * <p>
  * Zowel bij de begin- als eindtijd van ee periode kan een String meegegeven
  * worden die voor de gebruiker een betekenisvolle aanduiding toevoegt aan dat
  * tijdstip. Indien geen string meegegeven wordt, wordt een teller gebruikt, die
  * automatisch opgehoogd wordt.
- *
+ * <p>
  * Na het opgeven van een begintijdstip (via setBegin of eenmalig via init ) kan
  * t.o.v. dit begintijdstip steeds een eindtijdstip opgegeven worden. Zodoende
  * kun je vanaf 1 begintijdstip, meerdere eindtijden opgeven.
- *
+ * <p>
  * Een andere mogelijkheid is om een eindtijdstip direct te laten fungeren als
  * begintijdstip voor een volgende periode. Dit kan d.m.v. SetEndBegin of seb.
- *
+ * <p>
  * alle tijdsperiodes kunnen gereset worden dmv init()
  *
  * @author erik
- *
  */
 public class TimeStamp {
 
@@ -105,10 +104,22 @@ public class TimeStamp {
     }
 
     /**
+     * override van toString methode. Geeft alle tijdsperiode weer.
+     */
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+
+        for (Period p : this.list) {
+            buffer.append(p.toString());
+            buffer.append('\n');
+        }
+        return buffer.toString();
+    }
+
+    /**
      * interne klasse voor bijhouden van periodes.
      *
      * @author erik
-     *
      */
     private class Period {
 
@@ -136,18 +147,5 @@ public class TimeStamp {
         public String toString() {
             return "From '" + this.beginS + "' till '" + this.endS + "' is " + (this.end - this.begin) + " mSec.";
         }
-    }
-
-    /**
-     * override van toString methode. Geeft alle tijdsperiode weer.
-     */
-    public String toString() {
-        StringBuffer buffer = new StringBuffer();
-
-        for (Period p : this.list) {
-            buffer.append(p.toString());
-            buffer.append('\n');
-        }
-        return buffer.toString();
     }
 }
