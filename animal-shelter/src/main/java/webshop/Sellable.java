@@ -1,4 +1,4 @@
-package animals;
+package webshop;
 
 public interface Sellable {
 

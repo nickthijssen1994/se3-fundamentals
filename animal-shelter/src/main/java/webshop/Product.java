@@ -1,4 +1,4 @@
-package animals;
+package webshop;
 
 public class Product implements Sellable{
 

@@ -1,4 +1,4 @@
-package animals;
+package webshop;
 
 import java.util.ArrayList;
 import java.util.List;

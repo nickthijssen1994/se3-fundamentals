@@ -1,5 +1,7 @@
 package animals;
 
+import webshop.Sellable;
+
 import java.util.Date;
 
 public abstract class Animal implements Sellable {
