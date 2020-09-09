@@ -12,4 +12,12 @@ public class Reservor {
         this.name = name;
         this.reservedAt = reservedAt;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getReservedAt() {
+        return reservedAt;
+    }
 }

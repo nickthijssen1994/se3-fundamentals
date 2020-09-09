@@ -18,4 +18,8 @@ public class Reservation {
     public void newDog(String name, Gender gender){
         this.animals.add(new Dog(name,gender));
     }
+
+    public List<Animal> getAnimals() {
+        return animals;
+    }
 }

@@ -8,4 +8,8 @@ public class Cat extends Animal{
         super(name, gender);
         this.badHabits = badHabits;
     }
+
+    public String getBadHabits() {
+        return badHabits;
+    }
 }

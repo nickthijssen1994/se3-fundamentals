@@ -15,4 +15,8 @@ public class Dog extends Animal{
         Date today = new Date();
         return (today.getTime() - lastWalk.getTime()) > 86400000;
     }
+
+    public Date getLastWalk() {
+        return lastWalk;
+    }
 }

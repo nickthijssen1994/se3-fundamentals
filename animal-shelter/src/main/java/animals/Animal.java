@@ -21,4 +21,16 @@ public class Animal {
         }
         return false;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Reservor getReservedBy() {
+        return reservedBy;
+    }
 }
