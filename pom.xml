@@ -7,6 +7,13 @@
     <groupId>nl.nickthijssen</groupId>
     <artifactId>se3-fundamentals</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <openfxVersion>11.0.2</openfxVersion>
+    </properties>
 
 </project>
