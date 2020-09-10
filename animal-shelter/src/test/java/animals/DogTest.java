@@ -16,7 +16,7 @@ class DogTest {
         assertEquals(Gender.MALE, this.dogOne.getGender());
         assertNull(this.dogOne.getReservedBy());
         Date today = new Date();
-        assertEquals(today, this.dogOne.getLastWalk());
+        assertTrue(today.getTime() - this.dogOne.getLastWalk().getTime() < 5000);
         assertFalse(this.dogOne.needsWalk());
     }
 
