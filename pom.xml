@@ -43,6 +43,18 @@
 
     <build>
         <plugins>
+            <!-- Java compiler - Java version 11 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${mavenVersion}</version>
+                <configuration>
+                    <release>${codeVersion}</release>
+                    <source>${codeVersion}</source>
+                    <target>${codeVersion}</target>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -60,17 +72,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!-- Java compiler - Java version 11 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${mavenVersion}</version>
-                <configuration>
-                    <release>${codeVersion}</release>
-                    <source>${codeVersion}</source>
-                    <target>${codeVersion}</target>
-                </configuration>
-            </plugin>
+
             <!-- Java Code Coverage with JaCoCo plugin for maven -->
             <plugin>
                 <groupId>org.jacoco</groupId>
