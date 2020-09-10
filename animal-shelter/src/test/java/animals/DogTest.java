@@ -31,7 +31,7 @@ class DogTest {
 
     @Test
     public void TestGetPrice() {
-        dogTwo.setNumber(0);
+        dogOne.setNumber(0);
         assertEquals(500, this.dogOne.getPrice());
         dogTwo.setNumber(1);
         assertEquals(450, this.dogTwo.getPrice());

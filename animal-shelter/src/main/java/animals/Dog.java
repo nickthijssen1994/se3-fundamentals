@@ -29,7 +29,7 @@ public class Dog extends Animal {
         double initialPrice = 500;
         double minPrice = 50;
 
-        initialPrice -= 50 * number;
+        initialPrice -= (50 * number);
 
         return Math.max(initialPrice, minPrice);
     }
