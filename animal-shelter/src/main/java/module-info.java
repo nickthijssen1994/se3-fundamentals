@@ -5,5 +5,7 @@ module animalshelter {
     requires javafx.graphics;
 
     opens gui;
+    opens animals;
+    opens webshop;
     exports gui;
 }
