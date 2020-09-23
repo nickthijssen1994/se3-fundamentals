@@ -53,12 +53,12 @@ public class SideEdgesCalculationTask extends Task<ArrayList<Edge>> implements O
             updateMessage("Edges Calculated: " + sideEdges.size());
             updateProgress(sideEdges.size(), nrEdgesToCalculate);
         }
-        //		For Debugging or Visualization
-        //		try {
-        //			Thread.sleep(0, 1);
-        //		}
-        //		catch (InterruptedException ex) {
-        //			Thread.currentThread().interrupt();
-        //		}
+
+        //For Debugging or Visualization
+        try {
+            Thread.sleep(0, 1);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
