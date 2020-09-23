@@ -1,8 +1,7 @@
-package gui;
+package fun3kochfractalfx;
 
 import calculate.Edge;
 import calculate.KochManager;
-import calculate.Side;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -22,9 +20,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class KochFractalMain extends Application {
+/**
+ * @author Nico Kuijpers
+ * Modified for FUN3 by Gertjan Schouten
+ */
+public class KochFractalOriginalMain extends Application {
 
-    private static final int THRESHOLD = 100_000;
+    private static final int THRESHOLD = 200_000;
     private final int kpWidth = 500;
     private final int kpHeight = 500;
     private final WritableImage image = new WritableImage(kpWidth, kpHeight);
@@ -40,7 +42,7 @@ public class KochFractalMain extends Application {
     // TO DO: Create class KochManager in package calculate
     private KochManager kochManager;
     // Current level of Koch fractal
-    private int currentLevel = 6;
+    private int currentLevel = 1;
     // Labels for level, nr edges, calculation time, and drawing time
     private Label labelLevel;
     private Label labelNrEdges;
@@ -49,15 +51,6 @@ public class KochFractalMain extends Application {
     private Label labelCalcText;
     private Label labelDraw;
     private Label labelDrawText;
-    private Label labelProgressLeft;
-    private ProgressBar progressBarLeft;
-    private Label labelProgressLeftText;
-    private Label labelProgressBottom;
-    private ProgressBar progressBarBottom;
-    private Label labelProgressBottomText;
-    private Label labelProgressRight;
-    private ProgressBar progressBarRight;
-    private Label labelProgressRightText;
     // Koch panel and its size
     private Canvas kochPanel;
     // counter for snapshot and its threshold (fixes rendering issue)
@@ -83,7 +76,7 @@ public class KochFractalMain extends Application {
         grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setPadding(new Insets(25, 25, 25, 25));
 
         // For debug purposes
         // Make de grid lines visible
@@ -91,8 +84,7 @@ public class KochFractalMain extends Application {
 
         // Drawing panel for Koch fractal
         kochPanel = new Canvas(kpWidth, kpHeight);
-        grid.add(kochPanel, 0, 3, 22, 1);
-        clearKochPanel();
+        grid.add(kochPanel, 0, 3, 25, 1);
 
         // Labels to present number of edges for Koch fractal
         labelNrEdges = new Label("Nr edges:");
@@ -147,54 +139,25 @@ public class KochFractalMain extends Application {
                 fitFractalButtonActionPerformed(event);
             }
         });
-        grid.add(buttonFitFractal, 7, 6);
-
-        Button buttonCancel = new Button();
-        buttonCancel.setText("Cancel");
-        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                cancelButtonActionPerformed(event);
-            }
-        });
-        grid.add(buttonCancel, 9, 6);
-
-        labelProgressLeft = new Label("Progress Left:");
-        grid.add(labelProgressLeft, 0, 7);
-        progressBarLeft = new ProgressBar();
-        grid.add(progressBarLeft, 3, 7);
-        labelProgressLeftText = new Label("Nr Edges: 0");
-        grid.add(labelProgressLeftText, 5, 7, 22, 1);
-
-        labelProgressBottom = new Label("Progress Bottom:");
-        grid.add(labelProgressBottom, 0, 8);
-        progressBarBottom = new ProgressBar();
-        grid.add(progressBarBottom, 3, 8);
-        labelProgressBottomText = new Label("Nr Edges: 0");
-        grid.add(labelProgressBottomText, 5, 8, 22, 1);
-
-        labelProgressRight = new Label("Progress Right:");
-        grid.add(labelProgressRight, 0, 9);
-        progressBarRight = new ProgressBar();
-        grid.add(progressBarRight, 3, 9);
-        labelProgressRightText = new Label("Nr Edges: 0");
-        grid.add(labelProgressRightText, 5, 9, 22, 1);
+        grid.add(buttonFitFractal, 14, 6);
 
         // Add mouse clicked event to Koch panel
-        kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                kochPanelMouseClicked(event);
-            }
-        });
+        kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kochPanelMouseClicked(event);
+                    }
+                });
 
         // Add mouse pressed event to Koch panel
-        kochPanel.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                kochPanelMousePressed(event);
-            }
-        });
+        kochPanel.addEventHandler(MouseEvent.MOUSE_PRESSED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kochPanelMousePressed(event);
+                    }
+                });
 
         // Add mouse dragged event to Koch panel
         kochPanel.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -211,19 +174,13 @@ public class KochFractalMain extends Application {
 
         // Create the scene and add the grid pane
         Group root = new Group();
-        Scene scene = new Scene(root, kpWidth + 50, kpHeight + 260);
+        Scene scene = new Scene(root, kpWidth + 50, kpHeight + 170);
         root.getChildren().add(grid);
 
         // Define title and assign the scene for main window
         primaryStage.setTitle("Koch Fractal");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    @Override
-    public void stop() {
-        kochManager.stopThreadPool();
-        Platform.exit();
     }
 
     public void clearKochPanel() {
@@ -246,7 +203,7 @@ public class KochFractalMain extends Application {
 
         // Set line width depending on level
         if (currentLevel <= 3) {
-            gc.setLineWidth(4.0);
+            gc.setLineWidth(2.0);
         } else if (currentLevel <= 5) {
             gc.setLineWidth(1.5);
         } else {
@@ -285,7 +242,8 @@ public class KochFractalMain extends Application {
     }
 
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 11) {
+        if (currentLevel < 12) {
+            // resetZoom();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
             kochManager.changeLevel(currentLevel);
@@ -294,6 +252,7 @@ public class KochFractalMain extends Application {
 
     private void decreaseLevelButtonActionPerformed(ActionEvent event) {
         if (currentLevel > 1) {
+            // resetZoom();
             currentLevel--;
             labelLevel.setText("Level: " + currentLevel);
             kochManager.changeLevel(currentLevel);
@@ -305,13 +264,9 @@ public class KochFractalMain extends Application {
         kochManager.drawEdges();
     }
 
-    private void cancelButtonActionPerformed(ActionEvent event) {
-        resetZoom();
-        kochManager.cancelRunningTasks();
-    }
-
     private void kochPanelMouseClicked(MouseEvent event) {
-        if (Math.abs(event.getX() - startPressedX) < 1.0 && Math.abs(event.getY() - startPressedY) < 1.0) {
+        if (Math.abs(event.getX() - startPressedX) < 1.0 &&
+                Math.abs(event.getY() - startPressedY) < 1.0) {
             double originalPointClickedX = (event.getX() - zoomTranslateX) / zoom;
             double originalPointClickedY = (event.getY() - zoomTranslateY) / zoom;
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -348,32 +303,11 @@ public class KochFractalMain extends Application {
     }
 
     private Edge edgeAfterZoomAndDrag(Edge e) {
-        return new Edge(e.X1 * zoom + zoomTranslateX, e.Y1 * zoom + zoomTranslateY, e.X2 * zoom + zoomTranslateX, e.Y2 * zoom + zoomTranslateY, e.color);
-    }
-
-    public ProgressBar getProgressBar(Side side) {
-        switch (side) {
-            case LEFT:
-                return progressBarLeft;
-            case BOTTOM:
-                return progressBarBottom;
-            case RIGHT:
-                return progressBarRight;
-            default:
-                throw new IllegalStateException("Unexpected value: " + side);
-        }
-    }
-
-    public Label getProgressLabel(Side side) {
-        switch (side) {
-            case LEFT:
-                return labelProgressLeftText;
-            case BOTTOM:
-                return labelProgressBottomText;
-            case RIGHT:
-                return labelProgressRightText;
-            default:
-                throw new IllegalStateException("Unexpected value: " + side);
-        }
+        return new Edge(
+                e.X1 * zoom + zoomTranslateX,
+                e.Y1 * zoom + zoomTranslateY,
+                e.X2 * zoom + zoomTranslateX,
+                e.Y2 * zoom + zoomTranslateY,
+                e.color);
     }
 }

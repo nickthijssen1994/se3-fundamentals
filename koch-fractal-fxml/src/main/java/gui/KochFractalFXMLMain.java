@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class KochFractalMain extends Application {
+public class KochFractalFXMLMain extends Application {
 
     public static void main(String[] args) {
         launch(args);

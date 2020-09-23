@@ -37,7 +37,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>nl.nickthijssen.gui.KochFractalMain</mainClass>
+                    <mainClass>nl.nickthijssen.gui.ProcessesThreadsMain</mainClass>
                 </configuration>
             </plugin>
         </plugins>

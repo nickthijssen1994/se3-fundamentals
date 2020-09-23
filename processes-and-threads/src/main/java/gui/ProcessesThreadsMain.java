@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * @author Nico Kuijpers
  * Modified for FUN3 by Gertjan Schouten
  */
-public class KochFractalMain extends Application {
+public class ProcessesThreadsMain extends Application {
 
     private static final int THRESHOLD = 200_000;
     private final int kpWidth = 500;

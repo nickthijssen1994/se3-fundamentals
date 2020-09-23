@@ -4,7 +4,7 @@
  */
 package calculate;
 
-import fun3kochfractalfx.FUN3KochFractalFX;
+import fun3kochfractalfx.KochFractalOriginalMain;
 import timeutil.TimeStamp;
 
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ public class KochManager {
 
     private KochFractal koch;
     private ArrayList<Edge> edges;
-    private FUN3KochFractalFX application;
+    private KochFractalOriginalMain application;
     private TimeStamp tsCalc;
     private TimeStamp tsDraw;
 
-    public KochManager(FUN3KochFractalFX application) {
+    public KochManager(KochFractalOriginalMain application) {
         this.edges = new ArrayList<Edge>();
         this.koch = new KochFractal(this);
         this.application = application;

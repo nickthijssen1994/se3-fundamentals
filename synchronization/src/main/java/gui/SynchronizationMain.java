@@ -1,4 +1,4 @@
-package fun3kochfractalfx;
+package gui;
 
 import calculate.Edge;
 import calculate.KochManager;
@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * @author Nico Kuijpers
  * Modified for FUN3 by Gertjan Schouten
  */
-public class FUN3KochFractalFX extends Application {
+public class SynchronizationMain extends Application {
 
     private static final int THRESHOLD = 200_000;
     private final int kpWidth = 500;
@@ -142,22 +142,20 @@ public class FUN3KochFractalFX extends Application {
         grid.add(buttonFitFractal, 14, 6);
 
         // Add mouse clicked event to Koch panel
-        kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        kochPanelMouseClicked(event);
-                    }
-                });
+        kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                kochPanelMouseClicked(event);
+            }
+        });
 
         // Add mouse pressed event to Koch panel
-        kochPanel.addEventHandler(MouseEvent.MOUSE_PRESSED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        kochPanelMousePressed(event);
-                    }
-                });
+        kochPanel.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                kochPanelMousePressed(event);
+            }
+        });
 
         // Add mouse dragged event to Koch panel
         kochPanel.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -265,8 +263,7 @@ public class FUN3KochFractalFX extends Application {
     }
 
     private void kochPanelMouseClicked(MouseEvent event) {
-        if (Math.abs(event.getX() - startPressedX) < 1.0 &&
-                Math.abs(event.getY() - startPressedY) < 1.0) {
+        if (Math.abs(event.getX() - startPressedX) < 1.0 && Math.abs(event.getY() - startPressedY) < 1.0) {
             double originalPointClickedX = (event.getX() - zoomTranslateX) / zoom;
             double originalPointClickedY = (event.getY() - zoomTranslateY) / zoom;
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -303,11 +300,6 @@ public class FUN3KochFractalFX extends Application {
     }
 
     private Edge edgeAfterZoomAndDrag(Edge e) {
-        return new Edge(
-                e.X1 * zoom + zoomTranslateX,
-                e.Y1 * zoom + zoomTranslateY,
-                e.X2 * zoom + zoomTranslateX,
-                e.Y2 * zoom + zoomTranslateY,
-                e.color);
+        return new Edge(e.X1 * zoom + zoomTranslateX, e.Y1 * zoom + zoomTranslateY, e.X2 * zoom + zoomTranslateX, e.Y2 * zoom + zoomTranslateY, e.color);
     }
 }

@@ -4,7 +4,7 @@
  */
 package calculate;
 
-import gui.KochFractalMain;
+import gui.ProcessesThreadsMain;
 import timeutil.TimeStamp;
 
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ public class KochManager {
 
     private final KochFractal koch;
     private ArrayList<Edge> edges;
-    private KochFractalMain application;
+    private ProcessesThreadsMain application;
     private TimeStamp tsCalc;
     private TimeStamp tsDraw;
 
     private int finishedThreadsCounter = 0;
 
-    public KochManager(KochFractalMain application) {
+    public KochManager(ProcessesThreadsMain application) {
         this.edges = new ArrayList<>();
         this.koch = new KochFractal(this);
         this.application = application;
