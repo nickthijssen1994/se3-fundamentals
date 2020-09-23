@@ -1,1 +1,1 @@
-# se3-fundamentals
+# SE3-Fundamentals
