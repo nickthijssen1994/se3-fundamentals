@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Dog extends Animal {
 
-    private Date lastWalk;
     private static int counter = 0;
+    private Date lastWalk;
     private int number;
 
     public Dog(String name, Gender gender) {

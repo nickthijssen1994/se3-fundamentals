@@ -11,11 +11,11 @@ public class ShoppingCart {
         products = new ArrayList<>();
     }
 
-    public void addProductToCart(Sellable sellable){
+    public void addProductToCart(Sellable sellable) {
         this.products.add(sellable);
     }
 
-    public double getTotalPrice(){
+    public double getTotalPrice() {
         double totalPrice = 0;
         for (Sellable product : products) {
             totalPrice += product.getPrice();

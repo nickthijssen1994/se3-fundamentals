@@ -1,6 +1,6 @@
 package webshop;
 
-public class Product implements Sellable{
+public class Product implements Sellable {
 
     private String name;
     private double price;
