@@ -1,0 +1,21 @@
+spring:
+  main:
+    banner-mode: console
+  datasource:
+    url: jdbc:mysql://nick-thijssen.nl:3306/dbkillerapp
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: killerapp
+    password: killerapp
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 6
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
