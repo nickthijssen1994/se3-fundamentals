@@ -42,7 +42,7 @@
                                 <DatePicker fx:id="dpLastWalk" maxWidth="1.7976931348623157E308"
                                             onAction="#lastWalkDateChanged" promptText="Last Walk"
                                             showWeekNumbers="true"/>
-                                <TextField fx:id="tfBadHabbit" maxWidth="1.7976931348623157E308"
+                                <TextField fx:id="tfBadHabit" maxWidth="1.7976931348623157E308"
                                            onAction="#badHabbitChanged" promptText="Bad Habbit"/>
                                 <Button fx:id="btAddAnimal" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
                                         onAction="#buttonAddAnimalClicked" text="Add Animal"/>

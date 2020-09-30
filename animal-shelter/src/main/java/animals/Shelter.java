@@ -13,7 +13,7 @@ public class Shelter extends Observable {
         animals = new ArrayList<>();
     }
 
-    public void addAnimal(Animal animal){
+    public void addAnimal(Animal animal) {
         animals.add(animal);
         notifyObservers();
     }

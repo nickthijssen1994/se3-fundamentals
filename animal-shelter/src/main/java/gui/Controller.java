@@ -18,18 +18,18 @@ import java.util.List;
 
 public class Controller implements AnimalShelterGUI {
 
-    private String animalName;
-    private Gender animalGender;
-    private Species animalSpecies;
+    private final ObservableList<Animal> animalObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Sellable> sellableObservableList = FXCollections.observableArrayList();
+    private String animalName = "";
+    private Gender animalGender = Gender.MALE;
+    private Species animalSpecies = Species.CAT;
     private LocalDate lastWalk;
-    private String badHabbit;
-    private String productName;
+    private String badHabit = "";
+    private String productName = "";
     private int productPrice = 0;
-    private String username;
+    private String username = "";
     private int totalPrice = 0;
-    private ObservableList<String> animals = FXCollections.observableArrayList();
-    private ObservableList<String> products = FXCollections.observableArrayList();
-    private ObservableList<String> sellables = FXCollections.observableArrayList();
 
     @FXML
     private GridPane grid;
@@ -52,7 +52,7 @@ public class Controller implements AnimalShelterGUI {
     private DatePicker dpLastWalk;
 
     @FXML
-    private TextField tfBadHabbit;
+    private TextField tfBadHabit;
 
     @FXML
     private Button btAddAnimal;
@@ -82,13 +82,13 @@ public class Controller implements AnimalShelterGUI {
     private Button btRemoveFromCart;
 
     @FXML
-    private ListView<String> lvAnimals;
+    private ListView<Animal> lvAnimals;
 
     @FXML
-    private ListView<String> lvProducts;
+    private ListView<Product> lvProducts;
 
     @FXML
-    private ListView<String> lvCart;
+    private ListView<Sellable> lvCart;
 
     @FXML
     private TextField tfTotalPrice;
@@ -111,7 +111,7 @@ public class Controller implements AnimalShelterGUI {
             System.out.println(animalGender.getDescription());
         });
 
-        cbAnimalSpecies.getItems().addAll(Species.values());
+        cbAnimalSpecies.getItems().setAll(Species.values());
         cbAnimalSpecies.setConverter(new StringConverter<>() {
             @Override
             public String toString(Species species) {
@@ -132,9 +132,45 @@ public class Controller implements AnimalShelterGUI {
         spProductPrice.valueProperty().addListener((observable, oldValue, newValue) -> {
             productPrice = newValue;
         });
-        lvAnimals.setItems(animals);
-        lvProducts.setItems(products);
-        lvCart.setItems(sellables);
+        lvAnimals.setItems(animalObservableList);
+        lvAnimals.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Animal item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.toString() == null) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+        lvProducts.setItems(productObservableList);
+        lvProducts.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Product item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.toString() == null) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+        lvCart.setItems(sellableObservableList);
+        lvCart.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Sellable item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.toString() == null) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
 
         animalShelterWebshop = new AnimalShelterWebshop();
         animalShelterWebshop.registerGUI(this);
@@ -144,10 +180,10 @@ public class Controller implements AnimalShelterGUI {
     void buttonAddAnimalClicked(ActionEvent event) {
         switch (animalSpecies) {
             case CAT:
-                animalShelterWebshop.addAnimal(new Cat(tfAnimalName.getText(),animalGender,tfBadHabbit.getText()));
+                animalShelterWebshop.addAnimal(new Cat(tfAnimalName.getText(), animalGender, tfBadHabit.getText()));
                 break;
             case DOG:
-                animalShelterWebshop.addAnimal(new Dog(tfAnimalName.getText(),animalGender));
+                animalShelterWebshop.addAnimal(new Dog(tfAnimalName.getText(), animalGender));
                 break;
         }
     }
@@ -194,7 +230,7 @@ public class Controller implements AnimalShelterGUI {
 
     @FXML
     void badHabbitChanged(ActionEvent actionEvent) {
-        badHabbit = tfBadHabbit.getText();
+        badHabit = tfBadHabit.getText();
     }
 
     @FXML
@@ -209,17 +245,18 @@ public class Controller implements AnimalShelterGUI {
 
     @Override
     public void updateAnimals(List<Animal> animals) {
-        this.animals.setAll(animals.toString());
+        this.animalObservableList.setAll(animals);
     }
 
     @Override
     public void updateInventory(List<Product> products) {
-        this.products.setAll(products.toString());
+        this.productObservableList.setAll(products);
     }
 
     @Override
     public void updateShoppingCart(List<Sellable> sellables) {
-        this.sellables.setAll(sellables.toString());
+
+        this.sellableObservableList.setAll(sellables);
     }
 
     @Override

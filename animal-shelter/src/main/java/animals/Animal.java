@@ -6,6 +6,7 @@ import java.util.Date;
 
 public abstract class Animal implements Sellable {
 
+    protected Species species;
     private String name;
     private Gender gender;
     private Reservor reservedBy;
@@ -38,11 +39,15 @@ public abstract class Animal implements Sellable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String reserved = ", Op For Adoption";
-        if(reservedBy != null){
+        if (reservedBy != null) {
             reserved = ", Reserved By - " + reservedBy.getName();
         }
-        return name + ", " + gender.getDescription() + reserved;
+        return "(" + species.getDescription() + ") " + name + ", " + gender.getDescription() + reserved + ", €" + getPrice();
+    }
+
+    public Species getSpecies() {
+        return species;
     }
 }

@@ -21,7 +21,7 @@ public class AnimalShelterWebshop extends Observer {
         shoppingCart.addObserver(this);
     }
 
-    public void registerGUI(AnimalShelterGUI animalShelterGUI){
+    public void registerGUI(AnimalShelterGUI animalShelterGUI) {
         this.animalShelterGUI = animalShelterGUI;
     }
 

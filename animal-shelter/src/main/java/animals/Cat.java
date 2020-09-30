@@ -6,6 +6,7 @@ public class Cat extends Animal {
 
     public Cat(String name, Gender gender, String badHabits) {
         super(name, gender);
+        species = Species.CAT;
         this.badHabits = badHabits;
     }
 
@@ -26,7 +27,7 @@ public class Cat extends Animal {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() + ", " + badHabits;
     }
 }

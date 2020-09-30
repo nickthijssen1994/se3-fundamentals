@@ -21,7 +21,7 @@ public class Product implements Sellable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name + ", " + price;
     }
 }

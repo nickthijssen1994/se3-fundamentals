@@ -18,7 +18,7 @@ public class ShoppingCart extends Observable {
         notifyObservers();
     }
 
-    public void removeProductFromCart(Sellable sellable){
+    public void removeProductFromCart(Sellable sellable) {
         sellables.remove(sellable);
         notifyObservers();
     }

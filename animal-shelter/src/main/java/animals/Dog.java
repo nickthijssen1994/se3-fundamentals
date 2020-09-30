@@ -10,6 +10,7 @@ public class Dog extends Animal {
 
     public Dog(String name, Gender gender) {
         super(name, gender);
+        species = Species.DOG;
         this.lastWalk = new Date();
         this.number = counter;
         counter++;
@@ -43,7 +44,7 @@ public class Dog extends Animal {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() + ", " + lastWalk.getTime();
     }
 }
