@@ -24,6 +24,7 @@ public abstract class Animal implements Sellable {
         return false;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -34,5 +35,14 @@ public abstract class Animal implements Sellable {
 
     public Reservor getReservedBy() {
         return reservedBy;
+    }
+
+    @Override
+    public String toString(){
+        String reserved = ", Op For Adoption";
+        if(reservedBy != null){
+            reserved = ", Reserved By - " + reservedBy.getName();
+        }
+        return name + ", " + gender.getDescription() + reserved;
     }
 }

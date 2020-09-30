@@ -19,4 +19,9 @@ public class Product implements Sellable {
     public double getPrice() {
         return this.price;
     }
+
+    @Override
+    public String toString(){
+        return name + ", " + price;
+    }
 }

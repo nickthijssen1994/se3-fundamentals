@@ -24,4 +24,9 @@ public class Cat extends Animal {
 
         return Math.max(initialPrice, minPrice);
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + ", " + badHabits;
+    }
 }

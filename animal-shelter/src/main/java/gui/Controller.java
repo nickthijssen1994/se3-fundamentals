@@ -1,17 +1,22 @@
 package gui;
 
-import animals.Gender;
-import animals.Species;
+import animals.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
-import webshop.Webshop;
+import webshop.AnimalShelterGUI;
+import webshop.AnimalShelterWebshop;
+import webshop.Product;
+import webshop.Sellable;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class Controller {
+public class Controller implements AnimalShelterGUI {
 
     private String animalName;
     private Gender animalGender;
@@ -22,6 +27,9 @@ public class Controller {
     private int productPrice = 0;
     private String username;
     private int totalPrice = 0;
+    private ObservableList<String> animals = FXCollections.observableArrayList();
+    private ObservableList<String> products = FXCollections.observableArrayList();
+    private ObservableList<String> sellables = FXCollections.observableArrayList();
 
     @FXML
     private GridPane grid;
@@ -74,13 +82,13 @@ public class Controller {
     private Button btRemoveFromCart;
 
     @FXML
-    private ListView<?> lvAnimals;
+    private ListView<String> lvAnimals;
 
     @FXML
-    private ListView<?> lvProducts;
+    private ListView<String> lvProducts;
 
     @FXML
-    private ListView<?> lvCart;
+    private ListView<String> lvCart;
 
     @FXML
     private TextField tfTotalPrice;
@@ -88,7 +96,7 @@ public class Controller {
     @FXML
     private Button btCheckout;
 
-    private Webshop webshop;
+    private AnimalShelterWebshop animalShelterWebshop;
 
     @FXML
     public void initialize() {
@@ -124,18 +132,29 @@ public class Controller {
         spProductPrice.valueProperty().addListener((observable, oldValue, newValue) -> {
             productPrice = newValue;
         });
+        lvAnimals.setItems(animals);
+        lvProducts.setItems(products);
+        lvCart.setItems(sellables);
 
-        webshop = new Webshop();
+        animalShelterWebshop = new AnimalShelterWebshop();
+        animalShelterWebshop.registerGUI(this);
     }
 
     @FXML
     void buttonAddAnimalClicked(ActionEvent event) {
-
+        switch (animalSpecies) {
+            case CAT:
+                animalShelterWebshop.addAnimal(new Cat(tfAnimalName.getText(),animalGender,tfBadHabbit.getText()));
+                break;
+            case DOG:
+                animalShelterWebshop.addAnimal(new Dog(tfAnimalName.getText(),animalGender));
+                break;
+        }
     }
 
     @FXML
     void buttonAddProductClicked(ActionEvent event) {
-
+        animalShelterWebshop.addProduct(new Product(tfProductName.getText(), spProductPrice.getValue()));
     }
 
     @FXML
@@ -145,7 +164,7 @@ public class Controller {
 
     @FXML
     void buttonCheckoutClicked(ActionEvent event) {
-
+        animalShelterWebshop.checkoutCart();
     }
 
     @FXML
@@ -186,5 +205,25 @@ public class Controller {
     @FXML
     void usernameChanged(ActionEvent actionEvent) {
         username = tfUserName.getText();
+    }
+
+    @Override
+    public void updateAnimals(List<Animal> animals) {
+        this.animals.setAll(animals.toString());
+    }
+
+    @Override
+    public void updateInventory(List<Product> products) {
+        this.products.setAll(products.toString());
+    }
+
+    @Override
+    public void updateShoppingCart(List<Sellable> sellables) {
+        this.sellables.setAll(sellables.toString());
+    }
+
+    @Override
+    public void updateTotalPrice(int totalPrice) {
+        tfTotalPrice.setText(String.valueOf(totalPrice));
     }
 }

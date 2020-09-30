@@ -3,29 +3,25 @@ package utilities;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class Observable<S extends Observable<S, O, A>, O extends Observer<S, O, A>, A> {
+public abstract class Observable {
 
-    protected final List<O> observers;
+    protected List<Observer> observers;
 
     public Observable() {
-        this.observers = new CopyOnWriteArrayList<>();
+        observers = new CopyOnWriteArrayList<>();
     }
 
-    public void addObserver(O observer) {
-        this.observers.add(observer);
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
-    public void removeObserver(O observer) {
-        this.observers.remove(observer);
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
     }
 
-    /**
-     * Notify observers.
-     */
-    @SuppressWarnings("unchecked")
-    public void notifyObservers(A argument) {
+    public void notifyObservers() {
         for (var observer : observers) {
-            observer.update((S) this, argument);
+            observer.update();
         }
     }
 }
