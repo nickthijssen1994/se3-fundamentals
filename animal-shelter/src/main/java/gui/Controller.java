@@ -210,7 +210,7 @@ public class Controller implements AnimalShelterGUI {
 
     @FXML
     void buttonReserveAnimalClicked(ActionEvent event) {
-
+        animalShelterWebshop.reserveAnimal(lvAnimals.getSelectionModel().getSelectedItem(), tfUserName.getText());
     }
 
     @FXML

@@ -31,7 +31,7 @@ public class AnimalShelterWebshop extends Observer {
 
 
     public void reserveAnimal(Animal animal, String reservorName) {
-
+        animal.Reserve(reservorName);
     }
 
 
