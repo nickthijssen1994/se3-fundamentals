@@ -64,6 +64,6 @@ public class AnimalShelterWebshop extends Observer {
         animalShelterGUI.updateAnimals((shelter.getAnimals()));
         animalShelterGUI.updateInventory(inventory.getProducts());
         animalShelterGUI.updateShoppingCart(shoppingCart.getSellables());
-        animalShelterGUI.updateTotalPrice((int) shoppingCart.getTotalPrice());
+        animalShelterGUI.updateTotalPrice(shoppingCart.getTotalPrice());
     }
 }

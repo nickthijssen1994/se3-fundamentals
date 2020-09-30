@@ -12,5 +12,5 @@ public interface AnimalShelterGUI {
 
     void updateShoppingCart(List<Sellable> sellables);
 
-    void updateTotalPrice(int totalPrice);
+    void updateTotalPrice(double totalPrice);
 }

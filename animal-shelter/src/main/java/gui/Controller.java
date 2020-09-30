@@ -195,7 +195,7 @@ public class Controller implements AnimalShelterGUI {
 
     @FXML
     void buttonAddToCartClicked(ActionEvent event) {
-
+        animalShelterWebshop.addToCart(lvProducts.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -205,7 +205,7 @@ public class Controller implements AnimalShelterGUI {
 
     @FXML
     void buttonRemoveFromCartClicked(ActionEvent event) {
-
+        animalShelterWebshop.removeFromCart(lvCart.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -260,7 +260,7 @@ public class Controller implements AnimalShelterGUI {
     }
 
     @Override
-    public void updateTotalPrice(int totalPrice) {
+    public void updateTotalPrice(double totalPrice) {
         tfTotalPrice.setText(String.valueOf(totalPrice));
     }
 }
