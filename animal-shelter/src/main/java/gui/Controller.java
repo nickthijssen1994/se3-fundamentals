@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
-import webshop.AnimalShelterGUI;
-import webshop.AnimalShelterWebshop;
-import webshop.Product;
-import webshop.Sellable;
+import webshop.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +27,7 @@ public class Controller implements AnimalShelterGUI {
     private int productPrice = 0;
     private String username = "";
     private int totalPrice = 0;
+    private AnimalShelter animalShelter;
 
     @FXML
     private GridPane grid;
@@ -95,8 +93,6 @@ public class Controller implements AnimalShelterGUI {
 
     @FXML
     private Button btCheckout;
-
-    private AnimalShelterWebshop animalShelterWebshop;
 
     @FXML
     public void initialize() {
@@ -172,45 +168,50 @@ public class Controller implements AnimalShelterGUI {
             }
         });
 
-        animalShelterWebshop = new AnimalShelterWebshop();
-        animalShelterWebshop.registerGUI(this);
+        animalShelter = new AnimalShelterWebshop();
+        animalShelter.registerGUI(this);
     }
 
     @FXML
     void buttonAddAnimalClicked(ActionEvent event) {
         switch (animalSpecies) {
             case CAT:
-                animalShelterWebshop.addAnimal(new Cat(tfAnimalName.getText(), animalGender, tfBadHabit.getText()));
+                animalShelter.addAnimal(new Cat(tfAnimalName.getText(), animalGender, tfBadHabit.getText()));
                 break;
             case DOG:
-                animalShelterWebshop.addAnimal(new Dog(tfAnimalName.getText(), animalGender));
+                animalShelter.addAnimal(new Dog(tfAnimalName.getText(), animalGender));
                 break;
         }
     }
 
     @FXML
     void buttonAddProductClicked(ActionEvent event) {
-        animalShelterWebshop.addProduct(new Product(tfProductName.getText(), spProductPrice.getValue()));
+        animalShelter.addProduct(new Product(tfProductName.getText(), spProductPrice.getValue()));
     }
 
     @FXML
     void buttonAddToCartClicked(ActionEvent event) {
-        animalShelterWebshop.addToCart(lvProducts.getSelectionModel().getSelectedItem());
+        if(!lvAnimals.getSelectionModel().isEmpty()){
+            animalShelter.addToCart(lvAnimals.getSelectionModel().getSelectedItem());
+        }
+        if(!lvProducts.getSelectionModel().isEmpty()){
+            animalShelter.addToCart(lvProducts.getSelectionModel().getSelectedItem());
+        }
     }
 
     @FXML
     void buttonCheckoutClicked(ActionEvent event) {
-        animalShelterWebshop.checkoutCart();
+        animalShelter.checkoutCart();
     }
 
     @FXML
     void buttonRemoveFromCartClicked(ActionEvent event) {
-        animalShelterWebshop.removeFromCart(lvCart.getSelectionModel().getSelectedItem());
+        animalShelter.removeFromCart(lvCart.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     void buttonReserveAnimalClicked(ActionEvent event) {
-        animalShelterWebshop.reserveAnimal(lvAnimals.getSelectionModel().getSelectedItem(), tfUserName.getText());
+        animalShelter.reserveAnimal(lvAnimals.getSelectionModel().getSelectedItem(), tfUserName.getText());
     }
 
     @FXML

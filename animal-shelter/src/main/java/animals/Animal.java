@@ -16,7 +16,7 @@ public abstract class Animal implements Sellable {
         this.gender = gender;
     }
 
-    public boolean Reserve(String reservedBy) {
+    public boolean reserve(String reservedBy) {
 
         if (this.reservedBy == null) {
             this.reservedBy = new Reservor(reservedBy, new Date());

@@ -18,10 +18,10 @@ class CatTest {
     @Test
     public void TestReservation() {
         assertNull(this.cat.getReservedBy());
-        assertTrue(this.cat.Reserve("John Doe"));
+        assertTrue(this.cat.reserve("John Doe"));
         assertNotNull(this.cat.getReservedBy());
         assertEquals("John Doe", this.cat.getReservedBy().getName());
-        assertFalse(this.cat.Reserve("Jane Doe"));
+        assertFalse(this.cat.reserve("Jane Doe"));
     }
 
     @Test

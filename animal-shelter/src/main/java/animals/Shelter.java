@@ -5,12 +5,20 @@ import utilities.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shelter extends Observable {
+public final class Shelter extends Observable {
 
+    private static Shelter instance;
     private final List<Animal> animals;
 
-    public Shelter() {
+    private Shelter() {
         animals = new ArrayList<>();
+    }
+
+    public static Shelter getInstance(){
+        if(instance == null){
+            instance = new Shelter();
+        }
+        return instance;
     }
 
     public void addAnimal(Animal animal) {

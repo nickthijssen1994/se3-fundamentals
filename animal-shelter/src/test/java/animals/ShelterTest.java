@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShelterTest {
 
-    private final Shelter shelter = new Shelter();
+    private final Shelter shelter = Shelter.getInstance();
 
     @Test
     public void TestNewCat() {

@@ -23,10 +23,10 @@ class DogTest {
     @Test
     public void TestReservation() {
         assertNull(this.dogOne.getReservedBy());
-        assertTrue(this.dogOne.Reserve("John Doe"));
+        assertTrue(this.dogOne.reserve("John Doe"));
         assertNotNull(this.dogOne.getReservedBy());
         assertEquals("John Doe", this.dogOne.getReservedBy().getName());
-        assertFalse(this.dogOne.Reserve("Jane Doe"));
+        assertFalse(this.dogOne.reserve("Jane Doe"));
     }
 
     @Test

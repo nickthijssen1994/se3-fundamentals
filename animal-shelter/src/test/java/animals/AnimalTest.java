@@ -18,9 +18,9 @@ class AnimalTest {
     @Test
     public void TestReservation() {
         assertNull(this.animal.getReservedBy());
-        assertTrue(this.animal.Reserve("John Doe"));
+        assertTrue(this.animal.reserve("John Doe"));
         assertNotNull(this.animal.getReservedBy());
         assertEquals("John Doe", this.animal.getReservedBy().getName());
-        assertFalse(this.animal.Reserve("Jane Doe"));
+        assertFalse(this.animal.reserve("Jane Doe"));
     }
 }
