@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.util.StringConverter;
 import webshop.Webshop;
 
 import java.time.LocalDate;
@@ -18,9 +19,9 @@ public class Controller {
     private LocalDate lastWalk;
     private String badHabbit;
     private String productName;
-    private double productPrice;
+    private int productPrice = 0;
     private String username;
-    private double totalPrice;
+    private int totalPrice = 0;
 
     @FXML
     private GridPane grid;
@@ -29,13 +30,15 @@ public class Controller {
     private TextField tfAnimalName;
 
     @FXML
-    private ChoiceBox<?> cbAnimalGender;
+    private ChoiceBox<Species> cbAnimalSpecies;
 
     @FXML
-    private RadioButton rbCat;
+    private RadioButton rbMale;
 
     @FXML
-    private RadioButton rbDog;
+    private RadioButton rbFemale;
+
+    private ToggleGroup tgGender;
 
     @FXML
     private DatePicker dpLastWalk;
@@ -50,7 +53,7 @@ public class Controller {
     private TextField tfProductName;
 
     @FXML
-    private Spinner<?> spProductPrice;
+    private Spinner<Integer> spProductPrice;
 
     @FXML
     private Button btAddProduct;
@@ -89,6 +92,39 @@ public class Controller {
 
     @FXML
     public void initialize() {
+        tgGender = new ToggleGroup();
+        rbMale.setToggleGroup(tgGender);
+        rbMale.setUserData(Gender.MALE);
+        rbFemale.setToggleGroup(tgGender);
+        rbFemale.setUserData(Gender.FEMALE);
+        rbMale.setSelected(true);
+        tgGender.selectedToggleProperty().addListener((observableValue, oldToggle, newToggle) -> {
+            animalGender = (Gender) tgGender.getSelectedToggle().getUserData();
+            System.out.println(animalGender.getDescription());
+        });
+
+        cbAnimalSpecies.getItems().addAll(Species.values());
+        cbAnimalSpecies.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Species species) {
+                return species.getDescription();
+            }
+
+            @Override
+            public Species fromString(String s) {
+                return null;
+            }
+        });
+        cbAnimalSpecies.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSpecies, newSpecies) -> animalSpecies = newSpecies);
+        cbAnimalSpecies.setValue(Species.CAT);
+
+        SpinnerValueFactory<Integer> valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, productPrice);
+        spProductPrice.setValueFactory(valueFactory);
+        spProductPrice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            productPrice = newValue;
+        });
+
         webshop = new Webshop();
     }
 
