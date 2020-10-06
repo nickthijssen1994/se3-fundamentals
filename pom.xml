@@ -18,6 +18,7 @@
         <module>persistence</module>
         <module>koch-fractal-fxml</module>
         <module>animal-shelter</module>
+        <module>koch-fractal-live-drawing</module>
     </modules>
     <packaging>pom</packaging>
     <name>SE3 Fundamentals</name>
