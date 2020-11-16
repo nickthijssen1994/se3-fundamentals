@@ -3,7 +3,9 @@ package chess;
 public class NQueenProblemMain {
 
 	public static void main(String[] args) {
-		QueenProblem queenProblem = new QueenProblem(30);
-		queenProblem.solveNQ();
+		for (int queens = 4; queens < 14; queens++) {
+			QueenProblem queenProblem = new QueenProblem(queens);
+			queenProblem.calculateSolution();
+		}
 	}
 }

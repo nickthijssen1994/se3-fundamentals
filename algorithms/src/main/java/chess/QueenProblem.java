@@ -35,26 +35,54 @@ public class QueenProblem {
 		System.out.println();
 	}
 
-	public boolean isSafeWhenPlaced(int row, int column) {
-		int i, j;
+	// Check if a Queen can be placed on a given cell
+	public boolean canBePlaced(int row, int column) {
 
-		/* Check this row on left side */
-		for (i = 0; i < column; i++) {
-			if (cells[row][i] == 1) {
+		// Check if a Queen is already placed here
+		if (cells[row][column] == 1) {
+			return false;
+		}
+
+		// Check if a Queen is on the same column
+		for (int rowCell = 0; rowCell < NUMBER_OF_QUEENS; rowCell++) {
+			if (cells[rowCell][column] == 1) {
 				return false;
 			}
 		}
 
-		/* Check upper diagonal on left side */
-		for (i = row, j = column; i >= 0 && j >= 0; i--, j--) {
-			if (cells[i][j] == 1) {
+		// Check if a Queen is on the same row
+		for (int columnCell = 0; columnCell < NUMBER_OF_QUEENS; columnCell++) {
+			if (cells[row][columnCell] == 1) {
 				return false;
 			}
 		}
 
-		/* Check lower diagonal on left side */
-		for (i = row, j = column; j >= 0 && i < NUMBER_OF_QUEENS; i++, j--) {
-			if (cells[i][j] == 1) {
+		// Check if a Queen is on upper left diagonal
+		for (int rowCell = row, columnCell = column; rowCell >= 0 && columnCell >= 0; rowCell--, columnCell--) {
+			if (cells[rowCell][columnCell] == 1) {
+				return false;
+			}
+		}
+
+		// Check if a Queen is on lower right diagonal
+		for (int rowCell = row, columnCell = column; rowCell < NUMBER_OF_QUEENS && columnCell < NUMBER_OF_QUEENS; rowCell++, columnCell++) {
+			if (cells[rowCell][columnCell] == 1) {
+				return false;
+			}
+		}
+
+		// Check if a Queen is on upper right diagonal
+		for (int rowCell = row, columnCell = column; rowCell >= 0 && columnCell < NUMBER_OF_QUEENS; rowCell--,
+				columnCell++) {
+			if (cells[rowCell][columnCell] == 1) {
+				return false;
+			}
+		}
+
+		// Check if a Queen is on lower left diagonal
+		for (int rowCell = row, columnCell = column; rowCell < NUMBER_OF_QUEENS && columnCell >= 0; rowCell++,
+				columnCell--) {
+			if (cells[rowCell][columnCell] == 1) {
 				return false;
 			}
 		}
@@ -76,7 +104,7 @@ public class QueenProblem {
 		for (int i = 0; i < NUMBER_OF_QUEENS; i++) {
             /* Check if the queen can be placed on
                board[i][col] */
-			if (isSafeWhenPlaced(i, col)) {
+			if (canBePlaced(i, col)) {
 				/* Place this queen in board[i][col] */
 				cells[i][col] = 1;
 
@@ -105,13 +133,19 @@ public class QueenProblem {
 	   Please note that there may be more than one
 	   solutions, this function prints one of the
 	   feasible solutions.*/
-	public boolean solveNQ() {
+	public boolean calculateSolution() {
+
+		long startTime = System.nanoTime();
 
 		if (solveNQUtil(0) == false) {
 			System.out.print("Solution does not exist");
 			return false;
 		}
 
+		long endTime = System.nanoTime();
+		long duration = endTime - startTime;
+
+		System.out.println("Calculation for " + NUMBER_OF_QUEENS + " Queens took " + duration + " nanoseconds.");
 		printBoard();
 		return true;
 	}
