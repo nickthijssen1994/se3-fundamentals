@@ -14,11 +14,4 @@ class ShelterTest {
         this.shelter.newCat("Ms. Meow", Gender.FEMALE, "Scratches Couch");
         assertEquals(1, this.shelter.getAnimals().size());
     }
-
-    @Test
-    public void TestNewDog() {
-        assertEquals(0, this.shelter.getAnimals().size());
-        this.shelter.newDog("Sgt. Woof", Gender.MALE);
-        assertEquals(1, this.shelter.getAnimals().size());
-    }
 }
