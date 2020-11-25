@@ -32,7 +32,6 @@ public class QueenProblem {
 			System.out.print("|");
 			System.out.println();
 		}
-		System.out.println();
 	}
 
 	// Check if a Queen can be placed on a given cell
@@ -92,7 +91,7 @@ public class QueenProblem {
 
 	/* A recursive utility function to solve N
        Queen problem */
-	private boolean solveNQUtil(int col) {
+	private boolean solveProblem(int col) {
         /* base case: If all queens are placed
            then return true */
 		if (col >= NUMBER_OF_QUEENS) {
@@ -109,7 +108,7 @@ public class QueenProblem {
 				cells[i][col] = 1;
 
 				/* recur to place rest of the queens */
-				if (solveNQUtil(col + 1) == true) {
+				if (solveProblem(col + 1) == true) {
 					return true;
 				}
 
@@ -135,10 +134,12 @@ public class QueenProblem {
 	   feasible solutions.*/
 	public boolean calculateSolution() {
 
+		System.out.println();
+
 		long startTime = System.nanoTime();
 
-		if (solveNQUtil(0) == false) {
-			System.out.print("Solution does not exist");
+		if (solveProblem(0) == false) {
+			System.out.println("Solution does not exist for " + NUMBER_OF_QUEENS + " number of Queens.");
 			return false;
 		}
 
