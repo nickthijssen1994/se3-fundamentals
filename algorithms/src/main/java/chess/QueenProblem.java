@@ -19,7 +19,7 @@ public class QueenProblem {
 		}
 	}
 
-	public void printBoard() {
+	private void printBoard() {
 		for (int row = 0; row < NUMBER_OF_QUEENS; row++) {
 			for (int column = 0; column < NUMBER_OF_QUEENS; column++) {
 				if (cells[row][column] == 0) {
@@ -35,7 +35,7 @@ public class QueenProblem {
 	}
 
 	// Check if a Queen can be placed on a given cell
-	public boolean canBePlaced(int row, int column) {
+	private boolean canBePlaced(int row, int column) {
 
 		// Check if a Queen is already placed here
 		if (cells[row][column] == 1) {
@@ -91,36 +91,36 @@ public class QueenProblem {
 
 	/* A recursive utility function to solve N
        Queen problem */
-	private boolean solveProblem(int col) {
+	private boolean solveProblem(int column) {
         /* base case: If all queens are placed
            then return true */
-		if (col >= NUMBER_OF_QUEENS) {
+		if (column >= NUMBER_OF_QUEENS) {
 			return true;
 		}
 
         /* Consider this column and try placing
            this queen in all rows one by one */
-		for (int i = 0; i < NUMBER_OF_QUEENS; i++) {
+		for (int row = 0; row < NUMBER_OF_QUEENS; row++) {
             /* Check if the queen can be placed on
-               board[i][col] */
-			if (canBePlaced(i, col)) {
-				/* Place this queen in board[i][col] */
-				cells[i][col] = 1;
+               board[row][column] */
+			if (canBePlaced(row, column)) {
+				/* Place this queen in board[row][column] */
+				cells[row][column] = 1;
 
 				/* recur to place rest of the queens */
-				if (solveProblem(col + 1) == true) {
+				if (solveProblem(column + 1) == true) {
 					return true;
 				}
 
-                /* If placing queen in board[i][col]
+                /* If placing queen in board[row][column]
                    doesn't lead to a solution then
-                   remove queen from board[i][col] */
-				cells[i][col] = 0; // BACKTRACK
+                   remove queen from board[row][column] */
+				cells[row][column] = 0; // BACKTRACK
 			}
 		}
 
         /* If the queen can not be placed in any row in
-           this colum col, then return false */
+           this colum column, then return false */
 		return false;
 	}
 
