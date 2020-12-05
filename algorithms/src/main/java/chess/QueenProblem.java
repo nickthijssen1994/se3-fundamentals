@@ -2,6 +2,7 @@ package chess;
 
 public class QueenProblem {
 
+	private int totalCalculations = 0;
 	private final int NUMBER_OF_QUEENS;
 	private final int[][] cells;
 
@@ -103,6 +104,7 @@ public class QueenProblem {
 		for (int row = 0; row < NUMBER_OF_QUEENS; row++) {
             /* Check if the queen can be placed on
                board[row][column] */
+			totalCalculations++;
 			if (canBePlaced(row, column)) {
 				/* Place this queen in board[row][column] */
 				cells[row][column] = 1;
@@ -147,6 +149,9 @@ public class QueenProblem {
 		long duration = endTime - startTime;
 
 		System.out.println("Calculation for " + NUMBER_OF_QUEENS + " Queens took " + duration + " nanoseconds.");
+		System.out.println("Calculation for " + NUMBER_OF_QUEENS + " Queens took " + totalCalculations + " " +
+				"calculations" +
+				".");
 		printBoard();
 		return true;
 	}
