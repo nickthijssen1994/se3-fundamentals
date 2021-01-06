@@ -12,6 +12,12 @@ public class QueenProblem {
 		emptyBoard();
 	}
 
+	private static final long MEGABYTE = 1024L * 1024L;
+
+	public static long bytesToMegabytes(long bytes) {
+		return bytes / MEGABYTE;
+	}
+
 	private void emptyBoard() {
 		for (int row = 0; row < NUMBER_OF_QUEENS; row++) {
 			for (int column = 0; column < NUMBER_OF_QUEENS; column++) {
@@ -144,6 +150,13 @@ public class QueenProblem {
 			System.out.println("Solution does not exist for " + NUMBER_OF_QUEENS + " number of Queens.");
 			return false;
 		}
+		Runtime runtime = Runtime.getRuntime();
+		// Run the garbage collector
+		runtime.gc();
+		// Calculate the used memory
+		long memory = runtime.totalMemory() - runtime.freeMemory();
+		System.out.println("Used memory is bytes: " + memory);
+		System.out.println("Used memory is megabytes: " + bytesToMegabytes(memory));
 
 		long endTime = System.nanoTime();
 		long duration = endTime - startTime;
